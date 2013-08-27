@@ -94,7 +94,7 @@ sg9
 I00
 sg10
 g11
-ssS'f_dias_lab'
+ssS'f_nombre'
 p32
 (dp33
 g4
@@ -102,14 +102,14 @@ I512
 sg5
 I00
 sg6
-I3
+I2
 sg7
-S'INTEGER'
+S'INTEGER REFERENCES t_datos (id) ON DELETE CASCADE'
 p34
 sg9
 I00
 sg10
-S'integer'
+S'reference t_datos'
 p35
 ssS'f_ingreso_bono'
 p36
@@ -329,7 +329,7 @@ sg19
 I00
 sg20
 g21
-ssS'f_nombre'
+ssS'f_dias_lab'
 p85
 (dp86
 g4
@@ -337,14 +337,14 @@ I512
 sg5
 I00
 sg6
-I2
+I3
 sg7
-S'INTEGER REFERENCES t_datos (id) ON DELETE CASCADE'
+S'INTEGER'
 p87
 sg9
 I00
 sg10
-S'reference t_datos'
+S'integer'
 p88
 ssS'f_ingreso_otros'
 p89
@@ -393,7 +393,7 @@ p97
 sg9
 I00
 sg10
-g35
+g88
 ssS'f_departamento'
 p98
 (dp99

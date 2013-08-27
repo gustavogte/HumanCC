@@ -144,7 +144,7 @@ db.define_table('t_nomina1a',
     Field('f_total', type='double',
           label=T('Total')),
     auth.signature,
-    format='%(f_clave_noi)s',
+    format='%(f_nombre)s',
     migrate=settings.migrate)
 
 db.define_table('t_nomina1a_archive',db.t_nomina1a,Field('current_record','reference t_nomina1a',readable=False,writable=False))
