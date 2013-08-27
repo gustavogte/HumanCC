@@ -1,0 +1,301 @@
+(dp0
+S'page_empresas_manage'
+p1
+S'## Manage empresas\r\n\r\n{{=form}}'
+p2
+sS'table_datos'
+p3
+(lp4
+S'clave_noi unique'
+p5
+aS'nombre required unique'
+p6
+aS'estatus required'
+p7
+aS'fecha_nacimiento date'
+p8
+aS'foto upload'
+p9
+aS'email'
+p10
+aS'telefono'
+p11
+aS'fecha_alta date required'
+p12
+aS'estatus'
+p13
+aS'fecha_baja date'
+p14
+aS'ife upload'
+p15
+aS'contrato upload'
+p16
+aS'escolaridad'
+p17
+aS'observaciones'
+p18
+aS'empresa empresas'
+p19
+aS'sucursal sucursales'
+p20
+aS'departamento departamentos'
+p21
+aS'puesto puestos'
+p22
+aS'nivel niveles'
+p23
+aS'fijo_15d'
+p24
+aS'noi_15d_max'
+p25
+asS'table_puestos'
+p26
+(lp27
+S'puesto'
+p28
+aS'nivel niveles'
+p29
+asS'table_auth_user'
+p30
+(lp31
+S'username'
+p32
+aS'first_name'
+p33
+aS'last_name'
+p34
+aS'email'
+p35
+aS'password'
+p36
+asS'tables'
+p37
+(lp38
+S'auth_user'
+p39
+aS'datos'
+p40
+aS'empresas'
+p41
+aS'sucursales'
+p42
+aS'departamentos'
+p43
+aS'puestos'
+p44
+aS'niveles'
+p45
+aS'estados'
+p46
+aS'nomina1a'
+p47
+asS'page_nomina1a_manage'
+p48
+S'## Manage nomina1a\r\n\r\n{{=form}}'
+p49
+sS'page_departamentos_manage'
+p50
+S'## Manage departamentos\r\n\r\n{{=form}}'
+p51
+sS'page_estados_manage'
+p52
+S'## Manage estados\r\n\r\n{{=form}}'
+p53
+sS'page_error'
+p54
+S'# Error: el documento no existe'
+p55
+sS'params'
+p56
+(lp57
+(S'title'
+p58
+S'HumanCap3 Simple'
+p59
+tp60
+a(S'subtitle'
+p61
+S'powered by DataWork'
+p62
+tp63
+a(S'author'
+p64
+S'Gustavo Matias Gutierrez Leon'
+p65
+tp66
+a(S'author_email'
+p67
+S'gustavogte@datawork.mx'
+p68
+tp69
+a(S'keywords'
+p70
+S'Recursos Humanos'
+p71
+tp72
+a(S'description'
+p73
+S'Administraci\xc3\xb3n y desarrollo de Recursos Humanos.'
+p74
+tp75
+a(S'layout_theme'
+p76
+S'Default'
+p77
+tp78
+a(S'database_uri'
+p79
+S'sqlite://storage.sqlite'
+p80
+tp81
+a(S'security_key'
+p82
+S'568ea311-6ff6-4f55-8069-606aef1fafb6'
+p83
+tp84
+a(S'email_server'
+p85
+S'localhost'
+p86
+tp87
+a(S'email_sender'
+p88
+S'you@example.com'
+p89
+tp90
+a(S'email_login'
+p91
+S''
+p92
+tp93
+a(S'login_method'
+p94
+S'local'
+p95
+tp96
+a(S'login_config'
+p97
+g92
+tp98
+a(S'plugins'
+p99
+(lp100
+tp101
+asS'table_sucursales'
+p102
+(lp103
+S'empresa empresas'
+p104
+aS'sucursal'
+p105
+aS'estado estados'
+p106
+asS'table_departamentos'
+p107
+(lp108
+S'empresa empresas'
+p109
+aS'sucursal sucursales'
+p110
+aS'departamento'
+p111
+asS'page_sucursales_manage'
+p112
+S'## Manage sucursales\r\n\r\n{{=form}}'
+p113
+sS'pages'
+p114
+(lp115
+S'index'
+p116
+aS'error'
+p117
+aS'datos_manage'
+p118
+aS'empresas_manage'
+p119
+aS'sucursales_manage'
+p120
+aS'departamentos_manage'
+p121
+aS'puestos_manage'
+p122
+aS'niveles_manage'
+p123
+aS'estados_manage'
+p124
+aS'nomina1a_manage'
+p125
+asS'name'
+p126
+S'HumanCap3'
+p127
+sS'page_puestos_manage'
+p128
+S'## Manage puestos\r\n\r\n{{=form}}'
+p129
+sS'table_nomina1a'
+p130
+(lp131
+S'clave_noi datos'
+p132
+aS'nombre datos'
+p133
+aS'empresa datos'
+p134
+aS'sucursal datos'
+p135
+aS'departamento datos'
+p136
+aS'puesto datos'
+p137
+aS'nivel datos'
+p138
+aS'fijo_15d datos'
+p139
+aS'dias_lab integer'
+p140
+aS'ingreso_fijo float'
+p141
+aS'unidades integer'
+p142
+aS'ingreso_comision float'
+p143
+aS'ingreso_bono float'
+p144
+aS'ingreso_otros float'
+p145
+aS'descuento_1 float'
+p146
+aS'descuento_2 float'
+p147
+aS'total float'
+p148
+asS'table_empresas'
+p149
+(lp150
+S'empresa'
+p151
+asS'table_estados'
+p152
+(lp153
+S'estado'
+p154
+asS'page_index'
+p155
+S'# Human Capital Constructor'
+p156
+sS'page_niveles_manage'
+p157
+S'## Manage niveles\r\n\r\n{{=form}}'
+p158
+sS'table_niveles'
+p159
+(lp160
+S'nivel'
+p161
+asS'page_datos_manage'
+p162
+S'## Manage datos\r\n\r\n{{=form}}'
+p163
+s.

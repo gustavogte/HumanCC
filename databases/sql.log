@@ -1,0 +1,499 @@
+timestamp: 2013-08-26T14:17:27.125032
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2013-08-26T14:17:27.130472
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-08-26T14:17:27.136684
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.143398
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2013-08-26T14:17:27.151394
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2013-08-26T14:17:27.159502
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2013-08-26T14:17:27.172280
+CREATE TABLE t_niveles(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_nivel CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.182319
+CREATE TABLE t_niveles_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_nivel CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_niveles (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.192477
+CREATE TABLE t_empresas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_empresa CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.200397
+CREATE TABLE t_empresas_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_empresa CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_empresas (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.209198
+CREATE TABLE t_estados(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_estado CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.216158
+CREATE TABLE t_estados_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_estado CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_estados (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.226625
+CREATE TABLE t_sucursales(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_empresa INTEGER REFERENCES t_empresas (id) ON DELETE CASCADE,
+    f_sucursal CHAR(512),
+    f_estado INTEGER REFERENCES t_estados (id) ON DELETE CASCADE,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.234580
+CREATE TABLE t_sucursales_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_empresa INTEGER REFERENCES t_empresas (id) ON DELETE CASCADE,
+    f_sucursal CHAR(512),
+    f_estado INTEGER REFERENCES t_estados (id) ON DELETE CASCADE,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_sucursales (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.243967
+CREATE TABLE t_departamentos(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_empresa INTEGER REFERENCES t_empresas (id) ON DELETE CASCADE,
+    f_sucursal INTEGER REFERENCES t_sucursales (id) ON DELETE CASCADE,
+    f_departamento CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.252190
+CREATE TABLE t_departamentos_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_empresa INTEGER REFERENCES t_empresas (id) ON DELETE CASCADE,
+    f_sucursal INTEGER REFERENCES t_sucursales (id) ON DELETE CASCADE,
+    f_departamento CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_departamentos (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.261878
+CREATE TABLE t_puestos(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_puesto CHAR(512),
+    f_nivel INTEGER REFERENCES t_niveles (id) ON DELETE CASCADE,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.269503
+CREATE TABLE t_puestos_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_puesto CHAR(512),
+    f_nivel INTEGER REFERENCES t_niveles (id) ON DELETE CASCADE,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_puestos (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.287348
+CREATE TABLE t_datos(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_clave_noi CHAR(512) UNIQUE,
+    f_nombre CHAR(512) NOT NULL UNIQUE,
+    f_estatus CHAR(512) NOT NULL,
+    f_fecha_nacimiento DATE,
+    f_foto CHAR(512),
+    f_email CHAR(512),
+    f_telefono CHAR(512),
+    f_fecha_alta DATE NOT NULL,
+    f_fecha_baja DATE,
+    f_ife CHAR(512),
+    f_contrato CHAR(512),
+    f_escolaridad CHAR(512),
+    f_observaciones CHAR(512),
+    f_empresa INTEGER REFERENCES t_empresas (id) ON DELETE CASCADE,
+    f_sucursal INTEGER REFERENCES t_sucursales (id) ON DELETE CASCADE,
+    f_departamento INTEGER REFERENCES t_departamentos (id) ON DELETE CASCADE,
+    f_puesto INTEGER REFERENCES t_puestos (id) ON DELETE CASCADE,
+    f_nivel INTEGER REFERENCES t_niveles (id) ON DELETE CASCADE,
+    f_fijo_15d CHAR(512),
+    f_noi_15d_max CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:27.300758
+CREATE TABLE t_datos_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_clave_noi CHAR(512) UNIQUE,
+    f_nombre CHAR(512) NOT NULL UNIQUE,
+    f_estatus CHAR(512) NOT NULL,
+    f_fecha_nacimiento DATE,
+    f_foto CHAR(512),
+    f_email CHAR(512),
+    f_telefono CHAR(512),
+    f_fecha_alta DATE NOT NULL,
+    f_fecha_baja DATE,
+    f_ife CHAR(512),
+    f_contrato CHAR(512),
+    f_escolaridad CHAR(512),
+    f_observaciones CHAR(512),
+    f_empresa INTEGER REFERENCES t_empresas (id) ON DELETE CASCADE,
+    f_sucursal INTEGER REFERENCES t_sucursales (id) ON DELETE CASCADE,
+    f_departamento INTEGER REFERENCES t_departamentos (id) ON DELETE CASCADE,
+    f_puesto INTEGER REFERENCES t_puestos (id) ON DELETE CASCADE,
+    f_nivel INTEGER REFERENCES t_niveles (id) ON DELETE CASCADE,
+    f_fijo_15d CHAR(512),
+    f_noi_15d_max CHAR(512),
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_datos (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:28.027920
+CREATE TABLE t_nomina1a(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_clave_noi INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_nombre INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_empresa INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_sucursal INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_departamento INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_puesto INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_nivel INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_fijo_15d INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_dias_lab INTEGER,
+    f_ingreso_fijo DOUBLE,
+    f_unidades INTEGER,
+    f_ingreso_comision DOUBLE,
+    f_ingreso_bono DOUBLE,
+    f_ingreso_otros DOUBLE,
+    f_descuento_1 DOUBLE,
+    f_descuento_2 DOUBLE,
+    f_total DOUBLE,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T14:17:28.041527
+CREATE TABLE t_nomina1a_archive(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    f_clave_noi INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_nombre INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_empresa INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_sucursal INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_departamento INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_puesto INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_nivel INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_fijo_15d INTEGER REFERENCES t_datos (id) ON DELETE CASCADE,
+    f_dias_lab INTEGER,
+    f_ingreso_fijo DOUBLE,
+    f_unidades INTEGER,
+    f_ingreso_comision DOUBLE,
+    f_ingreso_bono DOUBLE,
+    f_ingreso_otros DOUBLE,
+    f_descuento_1 DOUBLE,
+    f_descuento_2 DOUBLE,
+    f_total DOUBLE,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    current_record INTEGER REFERENCES t_nomina1a (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-08-26T16:45:17.659698
+ALTER TABLE t_nomina1a ADD f_id INTEGER REFERENCES t_datos (id) ON DELETE CASCADE;
+success!
+timestamp: 2013-08-26T16:45:17.715322
+ALTER TABLE t_nomina1a_archive ADD f_id INTEGER REFERENCES t_datos (id) ON DELETE CASCADE;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
